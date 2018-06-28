@@ -1,41 +1,52 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-//import './index.css';
-//import App from './App';
-//import registerServiceWorker from './registerServiceWorker';
-const Hello = (props) => {
+import React from 'react'
+import ReactDOM from 'react-dom'
+const Otsikko = (props) => {
   return(
     <div>
-      <p>Hello {props.name}</p>
+      <h1> {props.kurssi}</h1>
+    </div>
+  )
+}
+const Osa =  (props) => {
+  return(
+      <p>{props.osa} {props.tehtavia}</p>
+  )
+}
+const Sisalto = (props) => {
+  return(
+    <div>
+      <Osa osa = {props.osa1}  tehtavia = {props.tehtavia1}/>
+      <Osa osa = {props.osa2}  tehtavia = {props.tehtavia2}/>
+      <Osa osa = {props.osa3}  tehtavia = {props.tehtavia3}/>
+    </div>
+  )
+}
+const Yhteensa = (props) => {
+  return(
+    <div>
+      <p>yhteensä {props.Tehtavia} tehtävää</p>
     </div>
   )
 }
 const App = () => {
-  console.log('Hello from komponentti')
-  const now = new Date()
-  const a = 10
-  const b = 20
-  const Footer = () => {
-    return (
-      <div>
-        greeting app created by <a href="https://github.com/mluukkai">mluukkai</a>
-      </div>
-    )
-  }
-  return React.createElement(
-    'div', null,
-    React.createElement(
-      'p', null, 'Hello world, it is ', now.toString()
-    ),
-    React.createElement(
-      'p', null, a, ' plus ', b, ' is ', a + b
-    ),
+  const kurssi = 'Half Stack -sovelluskehitys'
+  const osa1 = 'Reactin perusteet'
+  const tehtavia1 = 10
+  const osa2 = 'Tiedonvälitys propseilla'
+  const tehtavia2 = 7
+  const osa3 = 'Komponenttien tila'
+  const tehtavia3 = 14
+
+  return (
     <div>
-      <Hello name='x'/>
-      <Footer />
+      <Otsikko kurssi={kurssi} />
+      <Sisalto osa1={osa1} osa2={osa2} osa3={osa3} tehtavia1={tehtavia1} tehtavia2={tehtavia2} tehtavia3={tehtavia3}/>
+      <Yhteensa Tehtavia={tehtavia1 + tehtavia2 + tehtavia3} />
     </div>
   )
-
 }
-ReactDOM.render(<App />, document.getElementById('root'));
-//registerServiceWorker();
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+)
